@@ -7,6 +7,7 @@ use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\SobreNosController;
 use App\Http\Controllers\SiteSucessoController;
 use App\Http\Controllers\TesteController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +56,8 @@ Route::get('/contato', [ContatoController::class, 'contato'])->name('site.contat
 
 
 Route::post('/contato', [ContatoController::class,'salvar'])->name('site.contato');
-Route::get('/login', [])->name('site.login');
+Route::get('/login', [LoginController::class, 'index'])->name('site.login');
+Route::post('/login', [LoginController::class, 'autenticar'])->name('site.login');
 
 
 Route::middleware('autenticacao:padrao, visitante')->prefix('/app')->group(function () {
