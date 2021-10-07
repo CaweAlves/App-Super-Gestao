@@ -12,12 +12,13 @@ class LoginController extends Controller
     }
 
     public function autenticar(REQUEST $request) {
-        
+        // regras de validação
         $regras = [
             'email' => 'email',
             'senha' => 'required'
         ];
-        // regras de validação
+
+        // feedbacks de validação
         $feedback = [
         'email.email' => 'O email informado não é valido',
         'senha.required' => 'O campo senha é obrigatório'
