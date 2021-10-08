@@ -8,6 +8,9 @@ use App\Http\Controllers\SobreNosController;
 use App\Http\Controllers\SiteSucessoController;
 use App\Http\Controllers\TesteController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProdutoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,9 +64,11 @@ Route::post('/login', [LoginController::class, 'autenticar'])->name('site.login'
 
 
 Route::middleware('autenticacao:padrao, visitante')->prefix('/app')->group(function () {
-    Route::get('/clientes', function () {return 'Clientes';})->name('app.clientes');
-    Route::get('/fornecedores', [FornecedorController::class, 'index'])->name('app.fornecedores');
-    Route::get('/produtos', function () {return 'produtos';})->name('app.produtos');
+    Route::get('/fornecedor', [HomeController::class, 'index'])->name('app.home');
+    Route::get('/fornecedor', [LoginController::class, 'sair'])->name('app.sair');
+    Route::get('/cliente', [ClienteController::class, 'index'])->name('app.cliente');
+    Route::get('/fornecedor', [FornecedorController::class, 'index'])->name('app.fornecedor');
+    Route::get('/produto', [ProdutoController::class, 'index'])->name('app.produto');
 });
 
 

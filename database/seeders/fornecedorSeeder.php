@@ -24,8 +24,8 @@ class fornecedorSeeder extends Seeder
 
         // O método create (atenção ao atributo fillable da classe)
         Fornecedor::create([
-            'nome' => romance da Telecena',
-            'site' => romanceTelecena.com',
+            'nome' => 'romance da Telecena',
+            'site' => 'romanceTelecena.com',
             'uf' => 'SP',
             'email' => 'romanceTelecena@gmail.com'
         ]);
