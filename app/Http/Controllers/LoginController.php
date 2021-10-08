@@ -8,8 +8,17 @@ use App\Models\User;
 class LoginController extends Controller
 {
     //
-    public function index() {
-        return view('site.login', ['titulo' => 'login']);
+    public function index(REQUEST $request) {
+
+        $erro = '';
+
+        if($request->get('erro') == 1 ){
+            $erro = 'Usuário e ou senha não existe';
+        }
+
+
+        
+        return view('site.login', ['titulo' => 'login', 'erro' => $erro]);
     }
 
     public function autenticar(REQUEST $request) {
@@ -36,14 +45,14 @@ class LoginController extends Controller
         $user = new User();
 
         $usuario = $user->where('email', $email) 
-                       ->where('password', $password)
-                       ->get()
-                       ->first();
+                        ->where('password', $password)
+                        ->get()
+                        ->first();
 
         if(isset($usuario->name)){
             echo 'Usuário existe';
         } else {
-            echo 'Usuário não existe';
+            return redirect()->route('site.login', ['erro' => 1]);
         } 
 
         $usuario = $usuario;
