@@ -17,8 +17,9 @@
 
         <div class="informacao-pagina"> 
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
-                <form method="post" action="">
+                <form method="post" action=" {{ route('produto.update', ['produto' => $produto->id]) }} ">
                 @csrf
+                @method('PUT')
                     <input type="text" name="nome" value="{{ $produto->nome ?? old('nome') }}"  placeholder="Nome" class="borda-preta">
                         {{ $errors->has('nome') ? $errors->first('nome') : '' }}
                     
@@ -38,7 +39,7 @@
                     </select>
                         {{ $errors->has('unidade_id') ? $errors->first('unidade_id') : '' }}
 
-                    <button type="submit" class="borda-preta">Editar</button>
+                    <button type="submit" class="borda-preta">Atualizar</button>
             </form>
         </div>
 </div>
