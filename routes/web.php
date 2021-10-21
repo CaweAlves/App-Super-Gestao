@@ -5,12 +5,12 @@ use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\FornecedorController;
 use App\Http\Controllers\SobreNosController;
-use App\Http\Controllers\SiteSucessoController;
 use App\Http\Controllers\TesteController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\ProdutoDetalheController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +53,6 @@ use App\Http\Controllers\ProdutoController;
 // Route::redirect('/rota2', 'rota1');
 
 Route::get('/', [PrincipalController::class, 'principal'])->name('site.index');
-Route::get('/sucesso', [SiteSucessoController::class, 'sucesso'])->name('site.sucesso');
 Route::get('/sobre-nos', [SobreNosController::class, 'sobreNos'])->name('site.sobrenos');
 Route::get('/contato', [ContatoController::class, 'contato'])->name('site.contato');
 
@@ -77,6 +76,9 @@ Route::middleware('autenticacao:padrao, visitante')->prefix('/app')->group(funct
     
     //produtos
     Route::resource('/produto', ProdutoController::class);
+
+    //produtos detalhes
+    Route::resource('/produto-detalhe', ProdutoDetalheController::class);
 });
 
 
