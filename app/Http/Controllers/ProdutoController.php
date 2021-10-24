@@ -6,6 +6,7 @@ use App\Models\Produto;
 use Illuminate\Http\Request;
 use App\Models\Unidade;
 use App\Models\ProdutoDetalhe;
+use App\Models\Fornecedor;
 
 class ProdutoController extends Controller
 {
@@ -17,8 +18,9 @@ class ProdutoController extends Controller
     public function index(Request $request)
     {
         $produtos = Produto::with('produtoDetalhe')->paginate(10);
+        $fornecedores = Fornecedor::all();
 
-        return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all()]);
+        return view('app.produto.index', ['fornecedores' => $fornecedores, 'produtos' => $produtos, 'request' => $request->all()]);
     }
 
     /**
