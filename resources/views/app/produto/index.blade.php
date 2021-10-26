@@ -23,7 +23,8 @@
                         <tr>
                         <th>Nome</th>
                         <th>Descrição</th>
-                        <th>fornecedor</th>
+                        <th>Nome do fornecedor</th>
+                        <th>Site do fornecedor</th>
                         <th>Peso</th>
                         <th>unidade ID</th>
                         <th>Comprimento</th>
@@ -42,6 +43,7 @@
                                 <td>{{ $produto->nome }}</td>
                                 <td>{{ $produto->descricao }}</td>
                                 <td>{{ $produto->fornecedor->nome}}</td>
+                                <td>{{ $produto->fornecedor->site}}</td>
                                 <td>{{ $produto->peso }}</td>
                                 <td>{{ $produto->unidade_id }}</td>
                                 <td>{{ $produto->produtoDetalhe->comprimento ?? ' ' }}</td>

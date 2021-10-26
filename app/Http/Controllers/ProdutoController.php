@@ -17,7 +17,7 @@ class ProdutoController extends Controller
      */
     public function index(Request $request)
     {
-        $produtos = Produto::with('produtoDetalhe')->paginate(10);
+        $produtos = Produto::with('produtoDetalhe', 'fornecedor')->paginate(10);
         $fornecedores = Fornecedor::all();
 
         return view('app.produto.index', ['fornecedores' => $fornecedores, 'produtos' => $produtos, 'request' => $request->all()]);
