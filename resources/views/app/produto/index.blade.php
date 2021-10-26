@@ -26,7 +26,7 @@
                         <th>Nome do fornecedor</th>
                         <th>Site do fornecedor</th>
                         <th>Peso</th>
-                        <th>unidade ID</th>
+                        <th>unidade ID</th> 
                         <th>Comprimento</th>
                         <th>Altura</th>
                         <th>Largura</th>

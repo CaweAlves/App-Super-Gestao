@@ -8,13 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Produto extends Model
 {
     use HasFactory;
-    protected $fillable = ['nome', 'descricao', 'peso', 'unidade_id'];
+    protected $fillable = ['nome', 'descricao', 'peso', 'unidade_id', 'fornecedor_id'];
 
-    public function produtoDetalhe() {
-        return $this->hasOne('App\Models\ProdutoDetalhe'); 
+    public function produtoDetalhe()
+    {
+        return $this->hasOne('App\Models\ProdutoDetalhe');
     }
 
-    public function fornecedor() {
-        return $this->belongsTo('App\Models\Fornecedor'); 
+    public function fornecedor()
+    {
+        return $this->belongsTo('App\Models\Fornecedor');
     }
 }

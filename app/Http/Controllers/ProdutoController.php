@@ -30,8 +30,10 @@ class ProdutoController extends Controller
      */
     public function create()
     {
+        $fornecedores = Fornecedor::all();
         $unidades = Unidade::all();
-        return view('app.produto.create', ['unidades' => $unidades]);
+
+        return view('app.produto.create', ['unidades' => $unidades, 'fornecedores' => $fornecedores]);
     }
 
     /**
@@ -47,16 +49,18 @@ class ProdutoController extends Controller
             'nome' => 'required|min:3|max:50',
             'descricao' => 'required|min:3|max:2000',
             'peso' => 'required|integer',
-            'unidade_id' => 'exists:unidades,id'
+            'unidade_id' => 'exists:unidades,id',
+            'fornecedor_id' => 'exists:fornecedores,id'
         ];
 
         $feedback = [
-            'required' => 'O campo :atribute deve ser preenchido',
+            'required' => 'O campo :attribute deve ser preenchido',
             'min' => 'O campo :attribute deve ter no minimo 3 caracteres',
             'nome.max' => 'O campo nome deve ter no maximo 50 caracteres',
             'descricao.max' => 'O campo descricao deve ter no maximo 2000 caracteres',
             'peso' => 'O campo peso só aceita números inteiros',
-            'unidade_id.exists' => 'A unidade de medida informada não existe'
+            'unidade_id.exists' => 'A unidade de medida informada não existe',
+            'fornecedor_id.exists' => "O Fornecedor informado não existe"
         ];
 
         $request->validate($regras, $feedback);
@@ -85,11 +89,10 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
+        $fornecedores = Fornecedor::all();
         $unidades = Unidade::all();
 
-        
-
-        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades]);
+        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades, 'fornecedores' => $fornecedores]);
     }
 
     /**
@@ -101,8 +104,29 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, Produto $produto)
     {
-         $produto->update($request->all());
-         return redirect()->route('produto.show', ['produto' => $produto->id]);
+
+        $regras = [
+            'nome' => 'required|min:3|max:50',
+            'descricao' => 'required|min:3|max:2000',
+            'peso' => 'required|integer',
+            'unidade_id' => 'exists:unidades,id',
+            'fornecedor_id' => 'exists:fornecedores,id'
+        ];
+
+        $feedback = [
+            'required' => 'O campo :attribute deve ser preenchido',
+            'min' => 'O campo :attribute deve ter no minimo 3 caracteres',
+            'nome.max' => 'O campo nome deve ter no maximo 50 caracteres',
+            'descricao.max' => 'O campo descricao deve ter no maximo 2000 caracteres',
+            'peso' => 'O campo peso só aceita números inteiros',
+            'unidade_id.exists' => 'A unidade de medida informada não existe',
+            'fornecedor_id.exists' => "O Fornecedor informado não existe"
+        ];
+
+        $request->validate($regras, $feedback);
+
+        $produto->update($request->all());
+        return redirect()->route('produto.show', ['produto' => $produto->id]);
     }
 
     /**
