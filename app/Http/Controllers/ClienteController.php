@@ -26,9 +26,8 @@ class ClienteController extends Controller
      */
     public function create(Request $request)
     {
-        $clientes = Cliente::paginate(10);
 
-        return view('app.cliente.create', ['clientes' => $clientes, 'request' => $request->all()]);
+        return view('app.cliente.create', ['request' => $request->all()]);
         
     }
 
