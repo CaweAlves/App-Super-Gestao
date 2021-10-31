@@ -83,7 +83,9 @@ Route::middleware('autenticacao:padrao, visitante')->prefix('/app')->group(funct
 
     Route::resource('/cliente', ClienteController::class);
     Route::resource('/pedido', PedidoController::class);
-    Route::resource('/produto-produto', PedidoProdutoController::class);
+    // Route::resource('/produto-produto', PedidoProdutoController::class);
+    Route::get('pedido-produto/create/{pedido}', [PedidoProdutoController::class, 'create'])->name('pedido-produto.create');
+    Route::post('pedido-produto/store/{pedido}', [PedidoProdutoController::class, 'store'])->name('pedido-produto.store');
 });
 
 
