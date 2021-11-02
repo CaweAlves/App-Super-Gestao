@@ -29,6 +29,7 @@
                                 <th width="10%">ID:</th>
                                 <th>Nome do Produto:</th>
                                 <th>Data de inclusão do Pedido:</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,6 +37,16 @@
                                 <td>{{ $produto->id }}</td>
                                 <td>{{ $produto->nome }}</td>
                                 <td>{{ $produto->created_at->format('d/m/y á\s H:m') }}</td>
+                                <td>
+                                    <form id="form_{{ $pedido->id }}_{{ $produto->id }}"
+                                        action="{{ route('pedido-produto.destroy', ['pedido' => $pedido->id, 'produto' => $produto->id]) }}"
+                                        method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                    </form>
+                                        <a href="#"
+                                            onclick="document.getElementById('form_{{ $pedido->id }}_{{ $produto->id }}').submit()">Excluir</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
