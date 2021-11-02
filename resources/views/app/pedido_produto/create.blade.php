@@ -28,12 +28,14 @@
                             <tr>
                                 <th width="10%">ID:</th>
                                 <th>Nome do Produto:</th>
+                                <th>Data de inclusão do Pedido:</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>{{ $produto->id }}</td>
                                 <td>{{ $produto->nome }}</td>
+                                <td>{{ $produto->created_at->format('d/m/y á\s H:m') }}</td>
                             </tr>
                         </tbody>
                     </table>
