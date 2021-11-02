@@ -53,10 +53,10 @@ class PedidoProdutoController extends Controller
 
         $request->validate($regras, $feedback);
 
-        $pedidoProduto = new PedidoProduto();
-        $pedidoProduto->pedido_id = $pedido->id;
-        $pedidoProduto->produto_id = $request->get('produto_id');
-        $pedidoProduto->save();
+        // $pedidoProduto = new PedidoProduto();
+        // $pedidoProduto->pedido_id = $pedido->id;
+        // $pedidoProduto->produto_id = $request->get('produto_id');
+        // $pedidoProduto->save();
 
         //$pedido->produto // os registros do relacionamento
         //$pedido->produto() // objeto
