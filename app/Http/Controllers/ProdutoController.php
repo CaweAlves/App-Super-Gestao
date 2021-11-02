@@ -17,6 +17,7 @@ class ProdutoController extends Controller
      */
     public function index(Request $request)
     {
+        
         $produtos = Produto::with('produtoDetalhe', 'fornecedor')->paginate(10);
         $fornecedores = Fornecedor::all();
 
