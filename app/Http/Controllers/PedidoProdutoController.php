@@ -107,11 +107,10 @@ class PedidoProdutoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Pedido  $pedido
-     * @param Produto $produto
+     * @param  PedidoProduto  $pedidoProduto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pedido $pedido, Produto $produto)
+    public function destroy(PedidoProduto $pedidoProduto, $pedido_id)
     {
         //convencional
         // PedidoProduto::where([
@@ -120,8 +119,8 @@ class PedidoProdutoController extends Controller
         // ])->delete();
 
         //detach (delete pelo relacionamento)
-        $pedido->produtos()->detach($produto->id);
+        $pedidoProduto->delete();
 
-        return redirect()->route('pedido-produto.create', ['pedido' => $pedido->id]);
+        return redirect()->route('pedido-produto.create', ['pedido' => $pedido_id]);
     }
 }

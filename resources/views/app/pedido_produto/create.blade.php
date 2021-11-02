@@ -38,14 +38,14 @@
                                 <td>{{ $produto->nome }}</td>
                                 <td>{{ $produto->created_at->format('d/m/y á\s H:m') }}</td>
                                 <td>
-                                    <form id="form_{{ $pedido->id }}_{{ $produto->id }}"
-                                        action="{{ route('pedido-produto.destroy', ['pedido' => $pedido->id, 'produto' => $produto->id]) }}"
+                                    <form id="form_{{ $produto->pivot->id }}"
+                                        action="{{ route('pedido-produto.destroy', ['pedidoProduto' => $produto->pivot->id, 'pedido_id' => $pedido->id]) }}"
                                         method="POST">
                                         @method('DELETE')
                                         @csrf
                                     </form>
-                                        <a href="#"
-                                            onclick="document.getElementById('form_{{ $pedido->id }}_{{ $produto->id }}').submit()">Excluir</a>
+                                    <a href="#"
+                                        onclick="document.getElementById('form_{{ $produto->pivot->id }}').submit()">Excluir</a>
                                 </td>
                             </tr>
                         </tbody>
